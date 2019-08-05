@@ -31,3 +31,13 @@ function showPage(url, name) {
 
   ui.showSidebar(HtmlService.createTemplateFromFile(url).evaluate().setTitle(name));
 }
+
+//function showAlert(name) {
+//  var ui = SpreadsheetApp.getUi(); // Same variations.
+//
+//  var result = ui.alert(name);
+//}
+
+function getTableName() {
+  return SpreadsheetApp.getActiveSheet().getName();
+}
