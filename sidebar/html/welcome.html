@@ -1,33 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <base target="_top">
-  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
-  <link href="https://fonts.googleapis.com/css?family=Hind+Guntur|Lato:400,700|Muli:300,400,600,700&display=swap" rel="stylesheet">
-  
+
+  <!-- <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css"> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Roboto:300,400,500&display=swap" rel="stylesheet">
+
+  <?!= include('sidebar/js/fontAwesome.html') ?>
+
   <?!= include('sidebar/css/general.html') ?>
 </head>
 <body>
+  
   <div class="container">
-    <header class="header">
-      <div class="header_box">
+    <header class="columns is-primary is-header">
+      <div class="column">
         <img src="http://coral.ufsm.br/febr/img/logo.png">
       </div>
-      <div class="header_box">
-        <h1>Validação de dados</h1>
+      <div class="column has-text-right">
+        <h1 class="is-title">Validação</h1>
+        <h2 class="is-subtitle">de dados</h2>
       </div>
     </header>
-    
-    <section class="content">
-      <p>Clique no botão abaixo para identificar a tabela atual.</p>
-      
-      <!-- <input class="btn" type="button" value="Identificar tabela" onclick="identify();" /> -->
 
-      <input class="btn" type="button" value="Identificar tabela" onclick="google.script.run.showPage('sidebar/html/page2.html', 'febr');">
-      
-      <input type="button" name="close" value="Fechar" onclick="google.script.host.close()">
+    <div class="columns">
+      <div class="column">
+        <p class="is-tag has-text-centered pad-10">
+          <i class="fas fa-table"></i>
+          <span class="pad-l-5">Tabela</span>
+        </p>
+      </div>
+      <div class="column">
+        <span class="is-tag has-text-centered is-primary pad-10">
+          <?!= getTableName(); ?>
+        </span>
+      </div>
     </div>
-  </div>    
+
+    <div class="columns">
+      <div class="column">
+        <p class="is-secondary has-text-centered pad-lr-10 pad-tb-20">
+            A tabela foi identificada automaticamente. Clique em avançar para continuar.
+        </p>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <a class="button" onclick="google.script.host.close()">
+          <i class="fas fa-times-circle"></i>
+          <span class="pad-l-5">Fechar</span>
+        </a>
+      </div>
+      <div class="column">
+        <a class="button button-primary" onclick="google.script.run.showPage('sidebar/html/confirmation.html', 'febr');">
+          <i class="fas fa-arrow-right"></i>
+          <span class="pad-l-5">Avançar</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <?!= include('sidebar/js/script.html') ?>
 </body>
 </html>

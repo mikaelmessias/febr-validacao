@@ -1,43 +1,284 @@
 <style type="text/css">    
+  /**
+  * febr-validacao
+  *
+  * Estilos gerais da estrutura e dos componentes do complememento
+  *
+  * @project febr-validacao
+  * @version 1.0
+  * @author Mikael Pereira Messias
+  **/
+  
+  
+  /**
+  * Configurações iniciais e reset dos componentes para padronização entre navegadores diferentes
+  *
+  * @section general
+  */
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* http://meyerweb.com/eric/tools/css/reset/ 
+  v2.0 | 20110126
+  License: none (public domain)
+  */
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
   body {
-    font-family: 'Lato', sans-serif;
-    background-color: #eee;
+    line-height: 1;
   }
-
-  .header {
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-    border-bottom: 2px solid #555;
-    background-color: #38a7bb;
+  ol, ul {
+    list-style: none;
+  }
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
   }
   
-  .header h1 {
-    text-transform: uppercase;
+  body {
+    font-family: 'Roboto';
+  }
+  
+  
+  /**
+  * Sistema de grid simples baseado em flexbox.
+  *
+  * @section flexgrid
+  */
+  .columns {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .column {
+    flex: auto;
+    padding: 10px 10px;
+  }
+  
+  .is-1 {
+    flex: 1 0 0;
+  }
+  
+  .is-2 {
+    flex: 2 0 0;
+  }
+  
+  .is-3 {
+    flex: 3 0 0;
+  }
+  
+  
+  /**
+  * Definição das cores principais para os elemnentos da página
+  *
+  * @section colors
+  */
+  .is-primary {
+    background-color: #2BB1C4;
     color: #fff;
-    font-size: 20px;
+    font-weight: bold;
   }
   
-  .content {
+  .is-secondary {
+    background-color: #555555;
+    color: #fff;
+  }
+  
+  .is-tertiary {
+    background-color: #333333;
+  }
+  
+  .is-focus {
+    background-color: #267280;
+  }
+  
+  /* Estilo para o cabeçalho */
+  .is-header {
+    border-bottom: 2px solid rgb(100, 109, 168);
+  }
+  
+  /* Cores para textos e títulos */
+  .has-text-primary {
+    color: #2BB1C4;
+  }
+  
+  .has-text-secondary {
+    color: #555555;
+  }
+  
+  .has-text-tertiary {
+    color: #333333;
+  }
+  
+  .has-text-focus {
+    color: #267280;
+  }
+  
+  
+  /**
+  * Classes auxiliares para adicionar paddings personalizados aos componentes.
+  *
+  * @section padding
+  */
+  .pad-l-5 {
+    padding-left: 5px;
+  }
+  
+  .pad-r-5 {
+    padding-right: 5px;
+  }
+  
+  .pad-20 {
+    padding: 20px;
+  }
+  
+  .pad-tb-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .pad-tb-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .pad-10 {
     padding: 10px;
   }
-
-  input[type="button"] {
-    width: 100%;
-    margin-bottom: 10px;
-    background: rgba(155,190,230,0.6);
-    color: #222;
-    text-transform: uppercase;
-    transition: background 0.3s, box-shadow 0.3s;
-    border: 1px solid #fff;
-    border-radius: 5px;
-  }
-
-  input[type="button"]:hover {
-    background: rgba(255,255,255,1);
-    /*border: 2px solid rgba(155,190,230,0.6);*/
-    box-shadow: 2px 2px 0px rgba(155,190,230,0.6);
-  }
-
   
+  .pad-lr-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .pad-tb-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  
+  /**
+  * Classes para alinhamento e estilização de textos
+  *
+  * @section text
+  */
+  
+  /* Alinhamento */
+  .has-text-left {
+    text-align: left;
+  }
+  
+  .has-text-right {
+    text-align: right;
+  }
+  
+  .has-text-centered {
+    text-align: center;
+  }
+  
+  .has-text-justified {
+    text-align: justify;
+  }
+  
+  /* Estilização de títulos e subtítulos */
+  .is-title {
+    font-family: "Lato";
+    font-size: 1.3em;
+    text-transform: uppercase;
+    padding: 5px 0;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  .is-subtitle {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    display: block;
+    font-family: "Lato";
+  }
+  
+  /* Classes auxiliares para aplicar estilizações nos textos */
+  .has-text-bold {
+    font-weight: 900;
+  }
+  
+  .is-tag {
+    text-transform: uppercase;
+    font-weight: 400;
+    display: block;
+    font-family: "Lato";
+  }
+  
+  /**
+  * Estilização dos botões
+  *
+  * @section buttons
+  */
+  .button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #555;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-transform: uppercase;
+  }
+  
+  .button:hover {
+    border-color: #aaa;
+  }
+  
+  .button-primary {
+    background-color: #2BB1C4;
+    color: #fff;
+    border: 1px solid rgba(100, 109, 168, 0.2);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+  .button-primary:hover {
+    background-color: #ccc;
+    font-weight: 500;
+    color: #555;
+    border: 1px solid rgba(100, 109, 168, 0.2);
+  }
 </style>
