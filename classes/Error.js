@@ -3,6 +3,6 @@
  * @constructor
  * @author Mikael Messias <mikaelmessias@alunos.utfpr.edu.br>
  */
-function Log() {
+function Error() {
   this.records = [];
 }
