@@ -1,34 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <base target="_top">
-  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
-  <link href="https://fonts.googleapis.com/css?family=Hind+Guntur|Lato:400,700|Muli:300,400,600,700&display=swap" rel="stylesheet">
-  
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Roboto:300,400,500&display=swap" rel="stylesheet">
+
+  <?!= include('sidebar/js/fontAwesome.html') ?>
+
   <?!= include('sidebar/css/general.html') ?>
 </head>
 <body>
   <div class="container">
-    <header class="header">
-      <div class="header_box">
+    <header class="columns is-primary is-header">
+      <div class="column">
         <img src="http://coral.ufsm.br/febr/img/logo.png">
       </div>
-      <div class="header_box">
-        <h1>Validação de dados</h1>
+      <div class="column has-text-right">
+        <h1 class="is-title">Validação</h1>
+        <h2 class="is-subtitle">de dados</h2>
       </div>
     </header>
-    
-    <section class="content">
-      <h2>Página 2</h2>
 
-      <!-- <input class="btn" type="button" value="Identificar tabela" onclick="identify();" /> -->
+    <div class="columns">
+      <div class="column">
+        <p class="is-tag has-text-centered pad-10">
+          <i class="fas fa-table"></i>
+          <span class="pad-l-5">Tabela</span>
+        </p>
+      </div>
+      <div class="column">
+        <span class="is-tag has-text-centered is-primary pad-10">
+          <?!= getTableName(); ?>
+        </span>
+      </div>
+    </div>
 
-      <input class="btn" type="button" value="Voltar" onclick="google.script.run.showPage('sidebar/html/welcome.html', 'febr');">
+    <div class="columns">
+      <div class="column">
+        <p class="is-secondary has-text-centered pad-lr-10 pad-tb-20">
+            Para iniciar a validação, clique no botão abaixo.
+        </p>
+      </div>
+    </div>
 
-      <input class="btn" type="button" value="Avançar" onclick="google.script.run.showPage('sidebar/html/page3.html', 'febr');">
-      
-      <input type="button" name="close" value="Fechar" onclick="google.script.host.close()" />
-  </div>    
+    <div class="columns">
+      <div class="column">
+        <a class="button button-primary" onclick="">
+          <i class="fas fa-play"></i>
+          <span class="pad-l-5">Iniciar</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
