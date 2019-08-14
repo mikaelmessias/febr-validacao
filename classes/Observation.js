@@ -160,7 +160,7 @@ Observation.prototype.matchUnit = function(code, unit) {
  * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} spreadsheet - A planilha que será usada para criar a instância
  * @returns {Observation} Um objeto com os dados da planilha.
  */
-function ObservationSTD(std_key) {
+function ObservationSTD(std_id) {
   var columns = {
     codes: {
       required: [],
@@ -175,7 +175,7 @@ function ObservationSTD(std_key) {
   }
 
   // Abre a planilha de padrões
-  var spreadsheet = SpreadsheetApp.openById(std_key);
+  var spreadsheet = SpreadsheetApp.openById(std_id);
 
   // Abre a folha da planilha com os códigos
   var sheet = spreadsheet.getSheets()[0];
