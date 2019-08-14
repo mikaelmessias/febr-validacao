@@ -160,7 +160,7 @@ Observation.prototype.matchUnit = function(code, unit) {
  * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} spreadsheet - A planilha que será usada para criar a instância
  * @returns {Observation} Um objeto com os dados da planilha.
  */
-function ObservationSTD(spreadsheet) {
+function ObservationSTD(std_key) {
   var columns = {
     codes: [],
     units: []
@@ -170,14 +170,17 @@ function ObservationSTD(spreadsheet) {
     Logger.log("Obtendo os valores da planilha padrão...");
 
   // A folha com os códigos
+  var spreadsheet = SpreadsheetApp.openById(std_key);
   var sheet = spreadsheet.getSheets()[0];
 
   var max_rows = sheet.getLastRow();
 
   var value = null;
 
+  var carater_col = getColumnOfField(sheet, "campo_carater");
+
   for(var row = 2; row < max_rows && sheet.getRange(row,1).getValue() === "observacao"; row++) {
-    var carater = sheet.getRange(row,9).getValue();
+    var carater = sheet.getRange(row, carater_col).getValue();
 
     if(carater === "obrigatório" || carater === "recomendado") {
       value = sheet.getRange(row,2).getValue().toString();
@@ -225,8 +228,7 @@ function ObservationSTD(spreadsheet) {
  * @description Função temporária  utilizada para testar as funcionalidades das classes Observation e ObservationSTD.
  */
 function teste() {
-  var std = SpreadsheetApp.openById("1Dalqi5JbW4fg9oNkXw5TykZTA39pR5GezapVeV0lJZI");
-  var obsstd = new ObservationSTD(std);
+  var std = new ObservationSTD("1Dalqi5JbW4fg9oNkXw5TykZTA39pR5GezapVeV0lJZI");
 
 //  var obs_sheet = SpreadsheetApp.getActive().getSheets()[0];
 //  var obs_max_rows = obs_sheet.getLastRow();
