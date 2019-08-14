@@ -1,52 +1,55 @@
+LOG = 0;
+
 /**
- * Prepara as classes que serão utilizadas para realizar a validação.
+ * Prepara o ambiente de validação.
  * @constructor
- * @param {string} sheet_id - 
+ * @param {string} sheet_name - O nome da tabela a ser validada
  */
-function Validate(sheet_id) {
+function Validate(sheet_name) {
   // A planilha a ser validada
-  this.sheet_id = sheet_id;
-  
-  // A chave para a planilha de padrões do febr;
+  this.sheet_id = SpreadsheetApp.getActive();
+
+  // A chave para a planilha de padrões do febr
   this.std_id = "1Dalqi5JbW4fg9oNkXw5TykZTA39pR5GezapVeV0lJZI";
 
-  this.type = "";
+  this.name = sheet_name;
 }
 
 /**
- * @description -
+ * @description Executa a validação de dados de acordo com o tipo especificado da tabela.
  */
-Validate.prototype.dataset = function() {
-  this.std_sheet = new DatasetSTD(SpreadsheetApp.openById(this.std_id));
-  this.sheet = new Dataset();
-  this.type = "dataset";
-}
-
-/**
- * @description -
- */
-Validate.prototype.observacao = function() {
-  this.std_sheet = new ObservationSTD(SpreadsheetApp.openById(this.std_id));
-  this.sheet = new Observation();
-  this.type = "observacao";
-}
-
 Validate.prototype.run = function() {
-  if(this.type === "dataset") {  
+  switch(this.name) {
+    case "dataset": {
+      if(LOG) {
+        Logger.log("Validação da tabela dataset...");
+      }
+      break;
+    }
+    case "observacao": {
+      ValidateObservation(this.sheet, this.std_id);
+      if(LOG) {
+        Logger.log("Validação da tabela observacao...");
+      }
+      break;
+    }
+    case "metadados": {
+      if(LOG) {
+        Logger.log("Validação da tabela metadados...");
+      }
+      break;
+    }
+    case "camada": {
+      if(LOG) {
+        Logger.log("Validação da tabela camada...");
+      }
+      break;
+    }
+    default: {
+      if(LOG) {
+        Logger.log("Tipo de tabela desconhecido.");
+      }
+      break;
+    }
   }
-  else if(this.type === "observacao") {
-    ValidateObservation(this.sheet, this.std_sheet);
-  }
-  else if(this.type === "camada") {
-  }
-  else if(this.type === "metadados") { 
-  }
-  
-}
-
-function test() {
-  var s = new Validate("1xhrj70CT2gTuohKJJU3smA7Yykba0pdVnEq9uxAvjSM");
-  s.observacao();
-  s.std_sheet.log();
-  s.run();
 }
