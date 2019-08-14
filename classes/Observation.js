@@ -162,53 +162,70 @@ Observation.prototype.matchUnit = function(code, unit) {
  */
 function ObservationSTD(std_key) {
   var columns = {
-    codes: [],
+    codes: {
+      required: [],
+      recommended: [],
+      optional: []
+    },
     units: []
   };
 
-  if(LOG)
+  if(LOG) {
     Logger.log("Obtendo os valores da planilha padrão...");
+  }
 
-  // A folha com os códigos
+  // Abre a planilha de padrões
   var spreadsheet = SpreadsheetApp.openById(std_key);
-  var sheet = spreadsheet.getSheets()[0];
 
+  // Abre a folha da planilha com os códigos
+  var sheet = spreadsheet.getSheets()[0];
   var max_rows = sheet.getLastRow();
 
   var value = null;
 
+  // Busca a coluna que possui o carater de cada código
   var carater_col = getColumnOfField(sheet, "campo_carater");
 
-  for(var row = 2; row < max_rows && sheet.getRange(row,1).getValue() === "observacao"; row++) {
+  for(var row = 2; row < max_rows && sheet.getRange(row, 1).getValue() === "observacao"; row++) {
     var carater = sheet.getRange(row, carater_col).getValue();
 
-    if(carater === "obrigatório" || carater === "recomendado") {
-      value = sheet.getRange(row,2).getValue().toString();
-
-      if(LOG) Logger.log("Adicionando código " + columns.codes.length + ": " + value);
-
-      columns.codes.push(value);
+    if(carater === "obrigatório") {
+      value = sheet.getRange(row, 2).getValue().toString();
+      if(LOG) {
+        Logger.log("Adicionando código obrigatório " + columns.codes.length + ": " + value);
+      }
+      columns.codes.required.push(value);
+    }
+    else if(carater === "recomendado") {
+      value = sheet.getRange(row, 2).getValue().toString();
+      if(LOG) {
+        Logger.log("Adicionando código recomendado " + columns.codes.length + ": " + value);
+      }
+      columns.codes.recommended.push(value);
+    }
+    else {
+      value = sheet.getRange(row, 2).getValue().toString();
+      if(LOG) {
+        Logger.log("Adicionando código opcional " + columns.codes.length + ": " + value);
+      }
+      columns.codes.optional.push(value);
     }
   }
 
-  // A folha com as unidades de medida
+  // Abre a folha da planilha com as unidades de medida
   sheet = spreadsheet.getSheets()[1];
-
   max_rows = sheet.getLastRow();
-  var max_columns = sheet.getLastColumn();
 
-  for(var column = 1; column <= max_columns; column++) {
-    if(sheet.getRange(1,column).getValue() === "campo_unidade") {
-      break; 
-    }
-  }
+  var unit_col = getColumnOfField(sheet, "campo_unidade");
 
   for(var row = 2; row <= max_rows; row++) {
-    value = sheet.getRange(row,column).getValue();
+    value = sheet.getRange(row, unit_col).getValue();
 
-    if(LOG) Logger.log("Adicionando unidade " + columns.units.length + ": " + value);
+    if(LOG) {
+      Logger.log("Adicionando unidade " + columns.units.length + ": " + value);
+    }
 
-    columns.units.push(sheet.getRange(row,column).getValue()); 
+    columns.units.push(sheet.getRange(row, unit_col).getValue()); 
   }
 
   this.log = function() {
