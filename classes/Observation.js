@@ -187,26 +187,27 @@ function ObservationSTD(std_id) {
   for(var row = 2; row < max_rows && sheet.getRange(row, 1).getValue() === "observacao"; row++) {
     var carater = sheet.getRange(row, carater_col).getValue();
 
-    if(carater === "obrigatório") {
-      value = sheet.getRange(row, 2).getValue().toString();
-      if(LOG) {
-        Logger.log("Adicionando código obrigatório " + columns.codes.required.length + ": " + value);
-      }
-      columns.codes.required.push(value);
-    }
-    else if(carater === "recomendado") {
-      value = sheet.getRange(row, 2).getValue().toString();
-      if(LOG) {
-        Logger.log("Adicionando código recomendado " + columns.codes.recommended.length + ": " + value);
-      }
-      columns.codes.recommended.push(value);
-    }
-    else {
-      value = sheet.getRange(row, 2).getValue().toString();
-      if(LOG) {
-        Logger.log("Adicionando código opcional " + columns.codes.optional.length + ": " + value);
-      }
-      columns.codes.optional.push(value);
+    value = sheet.getRange(row, 2).getValue().toString();
+
+    switch(carater) {
+      case "obrigatório":
+        if(LOG) {
+          Logger.log("Adicionando código obrigatório " + columns.codes.required.length + ": " + value);
+        }
+        columns.codes.required.push(value);
+        break;
+      case "recomendado":
+        if(LOG) {
+          Logger.log("Adicionando código recomendado " + columns.codes.recommended.length + ": " + value);
+        }
+        columns.codes.recommended.push(value);
+        break;
+      case "opcional":
+        if(LOG) {
+          Logger.log("Adicionando código opcional " + columns.codes.optional.length + ": " + value);
+        }
+        columns.codes.optional.push(value);
+        break;
     }
   }
 
