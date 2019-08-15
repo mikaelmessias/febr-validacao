@@ -1,3 +1,5 @@
+var LOG = 0;
+
 /**
  * @description Procura a coluna de um campo na planilha.
  * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} sheet - A planilha em que será pesquisado o campo

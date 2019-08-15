@@ -1,5 +1,3 @@
-LOG = 0;
-
 /**
  * Representa a planilha Observação.
  * @constructor

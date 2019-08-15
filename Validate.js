@@ -1,5 +1,3 @@
-LOG = 0;
-
 /**
  * Prepara o ambiente de validação.
  * @constructor
@@ -7,7 +5,7 @@ LOG = 0;
  */
 function Validate(sheet_name) {
   // A planilha a ser validada
-  this.sheet_id = SpreadsheetApp.getActive();
+  this.sheet = SpreadsheetApp.getActive();
 
   // A chave para a planilha de padrões do febr
   this.std_id = "1Dalqi5JbW4fg9oNkXw5TykZTA39pR5GezapVeV0lJZI";
