@@ -190,21 +190,21 @@ function ObservationSTD(std_id) {
     if(carater === "obrigatório") {
       value = sheet.getRange(row, 2).getValue().toString();
       if(LOG) {
-        Logger.log("Adicionando código obrigatório " + columns.codes.length + ": " + value);
+        Logger.log("Adicionando código obrigatório " + columns.codes.required.length + ": " + value);
       }
       columns.codes.required.push(value);
     }
     else if(carater === "recomendado") {
       value = sheet.getRange(row, 2).getValue().toString();
       if(LOG) {
-        Logger.log("Adicionando código recomendado " + columns.codes.length + ": " + value);
+        Logger.log("Adicionando código recomendado " + columns.codes.recommended.length + ": " + value);
       }
       columns.codes.recommended.push(value);
     }
     else {
       value = sheet.getRange(row, 2).getValue().toString();
       if(LOG) {
-        Logger.log("Adicionando código opcional " + columns.codes.length + ": " + value);
+        Logger.log("Adicionando código opcional " + columns.codes.optional.length + ": " + value);
       }
       columns.codes.optional.push(value);
     }
